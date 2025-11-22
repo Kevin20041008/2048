@@ -106,16 +106,19 @@ def move_down(board: Board) -> Tuple[Board, int]:
 
 def can_move(board: Board) -> bool:
     """判断是否还能继续游戏。"""
+    # 检查是否有空格
     for r in range(SIZE):
         for c in range(SIZE):
             if board[r][c] == 0:
                 return True
 
+    # 检查水平方向是否可以合并
     for r in range(SIZE):
         for c in range(SIZE - 1):
             if board[r][c] == board[r][c + 1]:
                 return True
 
+    # 检查垂直方向是否可以合并
     for c in range(SIZE):
         for r in range(SIZE - 1):
             if board[r][c] == board[r + 1][c]:

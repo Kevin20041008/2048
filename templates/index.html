@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
         * {
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", sans-serif;
+                "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", sans-serif;
         }
 
         body {
@@ -96,17 +97,65 @@
             background: #cdc1b4;
         }
 
-        .tile-2    { background: #eee4da; color: #776e65; }
-        .tile-4    { background: #ede0c8; color: #776e65; }
-        .tile-8    { background: #f2b179; color: #f9f6f2; }
-        .tile-16   { background: #f59563; color: #f9f6f2; }
-        .tile-32   { background: #f67c5f; color: #f9f6f2; }
-        .tile-64   { background: #f65e3b; color: #f9f6f2; }
-        .tile-128  { background: #edcf72; color: #f9f6f2; font-size: 24px; }
-        .tile-256  { background: #edcc61; color: #f9f6f2; font-size: 24px; }
-        .tile-512  { background: #edc850; color: #f9f6f2; font-size: 24px; }
-        .tile-1024 { background: #edc53f; color: #f9f6f2; font-size: 22px; }
-        .tile-2048 { background: #edc22e; color: #f9f6f2; font-size: 22px; }
+        .tile-2 {
+            background: #eee4da;
+            color: #776e65;
+        }
+
+        .tile-4 {
+            background: #ede0c8;
+            color: #776e65;
+        }
+
+        .tile-8 {
+            background: #f2b179;
+            color: #f9f6f2;
+        }
+
+        .tile-16 {
+            background: #f59563;
+            color: #f9f6f2;
+        }
+
+        .tile-32 {
+            background: #f67c5f;
+            color: #f9f6f2;
+        }
+
+        .tile-64 {
+            background: #f65e3b;
+            color: #f9f6f2;
+        }
+
+        .tile-128 {
+            background: #edcf72;
+            color: #f9f6f2;
+            font-size: 24px;
+        }
+
+        .tile-256 {
+            background: #edcc61;
+            color: #f9f6f2;
+            font-size: 24px;
+        }
+
+        .tile-512 {
+            background: #edc850;
+            color: #f9f6f2;
+            font-size: 24px;
+        }
+
+        .tile-1024 {
+            background: #edc53f;
+            color: #f9f6f2;
+            font-size: 22px;
+        }
+
+        .tile-2048 {
+            background: #edc22e;
+            color: #f9f6f2;
+            font-size: 22px;
+        }
 
         /* 新增：毒格子 / 倒计时格子样式 */
         .tile-poison {
@@ -216,49 +265,165 @@
             cursor: pointer;
             font-weight: 600;
         }
+
+        .achievement-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: slideIn 0.5s ease-out;
+            max-width: 300px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .achievement-notification h3 {
+            margin: 0 0 4px 0;
+            font-size: 18px;
+        }
+
+        .achievement-notification p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .stats-panel {
+            margin-top: 16px;
+            padding: 12px;
+            background: #eee4da;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .stats-panel h3 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #776e65;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stat-label {
+            color: #776e65;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #776e65;
+        }
+
+        .achievements-list {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .achievement-badge {
+            padding: 4px 8px;
+            background: #8f7a66;
+            color: #f9f6f2;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .achievement-badge.unlocked {
+            background: #edc22e;
+            color: #f9f6f2;
+        }
+
+        .achievements-section {
+            margin-top: 8px;
+        }
+
+        .achievements-label {
+            font-size: 12px;
+            color: #776e65;
+            margin-bottom: 4px;
+        }
+
+        #game-status {
+            display: none;
+        }
     </style>
 </head>
-<body>
-<div class="container">
-    <div class="top-bar">
-        <div>
-            <h1>2048</h1>
-            <div class="hint">使用方向键或按钮移动方块</div>
-        </div>
-        <div class="score-wrapper">
-            <div class="score-box">
-                <div class="score-label">SCORE</div>
-                <div class="score-value">{{ score }}</div>
-            </div>
-            <div class="score-box">
-                <div class="score-label">MAX</div>
-                <div class="score-value">{{ max_tile }}</div>
-            </div>
-            <div class="score-box">
-                <div class="score-label">BEST</div>
-                <div class="score-value">{{ high_score }}</div>
-            </div>
-        </div>
-    </div>
 
-    <div class="board" id="board">
-        {% for row in board %}
+<body>
+    <div class="container">
+        <div id="game-status" data-active="{% if not game_over %}true{% else %}false{% endif %}"></div>
+        <div class="top-bar">
+            <div>
+                <h1>2048</h1>
+                <div class="hint">使用方向键或按钮移动方块</div>
+            </div>
+            <div class="score-wrapper">
+                <div class="score-box">
+                    <div class="score-label">SCORE</div>
+                    <div class="score-value">{{ score }}</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-label">MAX</div>
+                    <div class="score-value">{{ max_tile }}</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-label">BEST</div>
+                    <div class="score-value">{{ high_score }}</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-label">MOVES</div>
+                    <div class="score-value">{{ moves }}</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-label">TIME</div>
+                    <div class="score-value">{{ time_str }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="board" id="board">
+            {% for row in board %}
             {% set r = loop.index0 %}
             {% for cell in row %}
-                {% set c = loop.index0 %}
-                {% if cell == 0 %}
-                    <div class="tile tile-empty"></div>
-                {% else %}
-                    <div class="tile tile-{{ cell }}
+            {% set c = loop.index0 %}
+            {% if cell == 0 %}
+            <div class="tile tile-empty"></div>
+            {% else %}
+            <div class="tile tile-{{ cell }}
                                 {% if poison_active[r][c] %} tile-poison{% endif %}
                                 {% if countdown_active[r][c] %} tile-countdown{% endif %}">
-                        {{ cell }}
-                    </div>
-                {% endif %}
+                {{ cell }}
+            </div>
+            {% endif %}
             {% endfor %}
-        {% endfor %}
+            {% endfor %}
 
-        {% if game_over %}
+            {% if game_over %}
             <div class="game-over-mask">
                 <h2>游戏结束</h2>
                 <p>最大数字：{{ max_tile }}</p>
@@ -266,67 +431,142 @@
                     <button type="submit">再来一局</button>
                 </form>
             </div>
-        {% endif %}
-    </div>
+            {% endif %}
+        </div>
 
-    <div class="controls">
-        <form id="move-form" method="post" action="{{ url_for('move') }}">
-            <input type="hidden" name="direction" id="direction-input">
-            <div class="controls-grid">
-                <button type="button" class="empty"></button>
-                <button type="button" onclick="sendMove('up')">↑</button>
-                <button type="button" class="empty"></button>
-                <button type="button" onclick="sendMove('left')">←</button>
-                <button type="button" class="empty"></button>
-                <button type="button" onclick="sendMove('right')">→</button>
-                <button type="button" class="empty"></button>
-                <button type="button" onclick="sendMove('down')">↓</button>
-                <button type="button" class="empty"></button>
+        <div class="controls">
+            <form id="move-form" method="post" action="{{ url_for('move') }}">
+                <input type="hidden" name="direction" id="direction-input">
+                <div class="controls-grid">
+                    <button type="button" class="empty"></button>
+                    <button type="button" onclick="sendMove('up')">↑</button>
+                    <button type="button" class="empty"></button>
+                    <button type="button" onclick="sendMove('left')">←</button>
+                    <button type="button" class="empty"></button>
+                    <button type="button" onclick="sendMove('right')">→</button>
+                    <button type="button" class="empty"></button>
+                    <button type="button" onclick="sendMove('down')">↓</button>
+                    <button type="button" class="empty"></button>
+                </div>
+            </form>
+
+            <div class="side-controls">
+                <form method="post" action="{{ url_for('undo') }}">
+                    <button class="btn btn-undo" type="submit" {% if not can_undo %}disabled{% endif %}>
+                        撤回一步
+                    </button>
+                </form>
+                <form method="post" action="{{ url_for('reset') }}">
+                    <button class="btn btn-reset" type="submit">新游戏</button>
+                </form>
             </div>
-        </form>
+        </div>
 
-        <div class="side-controls">
-            <form method="post" action="{{ url_for('undo') }}">
-                <button class="btn btn-undo" type="submit"
-                        {% if not can_undo %}disabled{% endif %}>
-                    撤回一步
-                </button>
-            </form>
-            <form method="post" action="{{ url_for('reset') }}">
-                <button class="btn btn-reset" type="submit">新游戏</button>
-            </form>
+        <div class="hint hint-bottom">
+            小技巧：方向键也可以直接操作哦；毒格子有红色描边，连续 {{ poison_steps_limit }} 步不变化会把数字清零；
+            倒计时格子有蓝色描边，每步数字减半；“撤回一步”只保存最近 {{ max_history }} 步。
+        </div>
+
+        {% if new_achievements %}
+        {% for threshold, name in new_achievements %}
+        <div class="achievement-notification" data-achievement-id="achievement-{{ threshold }}">
+            <h3>🎉 成就解锁！</h3>
+            <p>达到 {{ threshold }} - {{ name }}</p>
+        </div>
+        {% endfor %}
+        <script>
+            // 3秒后自动隐藏成就通知
+            (function () {
+                var notifications = document.querySelectorAll('.achievement-notification');
+                setTimeout(function () {
+                    notifications.forEach(function (el) {
+                        if (el) {
+                            el.style.animation = 'slideIn 0.5s ease-out reverse';
+                            setTimeout(function () { el.remove(); }, 500);
+                        }
+                    });
+                }, 3000);
+            })();
+        </script>
+        {% endif %}
+
+        <div class="stats-panel">
+            <h3>📊 游戏统计</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">总游戏次数：</span>
+                    <span class="stat-value">{{ stats.total_games }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">平均分数：</span>
+                    <span class="stat-value">{{ stats.avg_score }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">总移动步数：</span>
+                    <span class="stat-value">{{ stats.total_moves }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">平均步数：</span>
+                    <span class="stat-value">{{ stats.avg_moves }}</span>
+                </div>
+            </div>
+            <div class="achievements-section">
+                <div class="achievements-label">已解锁成就：</div>
+                <div class="achievements-list">
+                    {% for threshold, name in achievements.items() %}
+                    <span class="achievement-badge {% if threshold in unlocked_achievements %}unlocked{% endif %}">
+                        {{ threshold }} - {{ name }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="hint hint-bottom">
-        小技巧：方向键也可以直接操作哦；毒格子有红色描边，连续 {{ POISON_STEPS_LIMIT|default(5) }} 步不变化会把数字清零；
-        倒计时格子有蓝色描边，每步数字减半；“撤回一步”只保存最近 {{ max_history }} 步。
-    </div>
-</div>
-
-<script>
-    function sendMove(direction) {
-        const input = document.getElementById('direction-input');
-        const form = document.getElementById('move-form');
-        input.value = direction;
-        form.submit();
-    }
-
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            sendMove('up');
-        } else if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            sendMove('down');
-        } else if (event.key === 'ArrowLeft') {
-            event.preventDefault();
-            sendMove('left');
-        } else if (event.key === 'ArrowRight') {
-            event.preventDefault();
-            sendMove('right');
+    <script>
+        function sendMove(direction) {
+            const input = document.getElementById('direction-input');
+            const form = document.getElementById('move-form');
+            input.value = direction;
+            form.submit();
         }
-    });
-</script>
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                sendMove('up');
+            } else if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                sendMove('down');
+            } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                sendMove('left');
+            } else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                sendMove('right');
+            }
+        });
+
+        // 实时更新时间显示
+        var gameActiveElement = document.getElementById('game-status');
+        var gameActive = gameActiveElement && gameActiveElement.getAttribute('data-active') === 'true';
+        if (gameActive) {
+            (function () {
+                function updateTime() {
+                    var timeElement = document.querySelector('.score-box:last-child .score-value');
+                    if (timeElement) {
+                        var timeParts = timeElement.textContent.split(':');
+                        var currentTime = parseInt(timeParts[0]) * 60 + parseInt(timeParts[1]);
+                        var newTime = currentTime + 1;
+                        var minutes = Math.floor(newTime / 60);
+                        var seconds = newTime % 60;
+                        timeElement.textContent = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+                    }
+                }
+                setInterval(updateTime, 1000);
+            })();
+        }
+    </script>
 </body>
+
 </html>
